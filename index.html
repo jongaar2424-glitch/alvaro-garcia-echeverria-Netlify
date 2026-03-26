@@ -52,6 +52,12 @@
     .nav-center a:hover { color:var(--white); }
     .nav-right { display:flex; align-items:center; gap:1rem; }
 
+    /* CV button */
+    .cv-btn { font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); text-decoration:none; border:1px solid rgba(201,169,110,.3); padding:6px 14px; border-radius:6px; transition:all .2s; white-space:nowrap; }
+    .cv-btn:hover { background:var(--accent-dim); border-color:var(--accent); }
+    @media(max-width:900px) { .cv-btn { display:inline-block; } }
+    @media(max-width:900px) { .mobile-menu .cv-btn { display:inline-block; font-size:.85rem; margin-top:.5rem; } }
+
     /* Lang toggle */
     .lang-toggle { display:flex; align-items:center; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
     .lang-btn { background:none; border:none; color:var(--muted); padding:5px 12px; font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; font-family:var(--font-body); transition:all .2s; }
@@ -85,6 +91,13 @@
     .section-label { font-size:.67rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
     .section-title { font-family:var(--font-display); font-size:clamp(2rem,5vw,3rem); font-weight:400; color:var(--white); letter-spacing:-.02em; line-height:1.15; margin-bottom:14px; }
     .section-sub { font-size:.95rem; color:var(--muted); max-width:500px; margin-bottom:56px; }
+
+    /* HERO STATS */
+    .hero-stats { display:flex; align-items:center; gap:1.5rem; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .hero-stat { display:flex; flex-direction:column; gap:3px; }
+    .hero-stat-num { font-family:var(--font-display); font-size:1.4rem; font-weight:400; color:var(--white); letter-spacing:-.02em; line-height:1; }
+    .hero-stat-label { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    .hero-stat-div { width:1px; height:28px; background:var(--border); }
 
     /* HERO */
     .hero { min-height:100vh; display:flex; align-items:center; padding:0 clamp(1.25rem,8vw,5rem); padding-top:var(--nav-h); position:relative; overflow:hidden; }
@@ -180,13 +193,34 @@
     .travel-countries span { font-size:.88rem; color:var(--muted); }
     .travel-countries .sep { color:var(--muted2); }
 
+    /* SKILLS REDESIGN */
+    .skills-new-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; }
+    .skill-block { background:var(--card); padding:2rem; border:1px solid var(--border); transition:border-color .2s; }
+    .skill-block:hover { border-color:var(--border-h); }
+    .skill-block-header { display:flex; align-items:center; gap:14px; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .skill-block-icon { width:38px; height:38px; border-radius:8px; background:var(--accent-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .skill-block-icon svg { width:18px; height:18px; stroke:var(--accent); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .skill-block-title { font-size:.72rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .skill-tag { font-size:.8rem; color:var(--muted); background:var(--bg); border:1px solid var(--border); padding:5px 12px; border-radius:4px; transition:all .2s; }
+    .skill-tag:hover { color:var(--text); border-color:var(--border-h); }
+    .skill-tag.highlight { color:var(--accent); border-color:rgba(201,169,110,.25); background:var(--accent-dim); }
+    .lang-item { display:flex; align-items:center; justify-content:space-between; padding:6px 0; }
+    .lang-name { font-size:.88rem; color:var(--text); }
+    .lang-level { font-size:.75rem; color:var(--accent); letter-spacing:.06em; }
+    .lang-bar { height:2px; background:var(--border); border-radius:1px; margin-top:4px; overflow:hidden; }
+    .lang-bar-fill { height:100%; background:var(--accent); border-radius:1px; }
+
     /* GALLERY */
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+    .gallery-collage { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; align-items:center; }
     .gallery-img { width:100%; height:100%; object-fit:cover; display:block; }
-    .gallery-item { aspect-ratio:1; border-radius:8px; overflow:hidden; position:relative; cursor:pointer; transition:transform .3s var(--ease); }
-    .gallery-item:hover { transform:scale(1.03); }
-    .gallery-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:2.2rem; position:relative; }
-    .gallery-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(0,0,0,.75),transparent); font-size:.72rem; color:rgba(255,255,255,.65); padding:20px 10px 8px; text-align:center; }
+    .gallery-item { border-radius:8px; overflow:hidden; position:relative; cursor:pointer; transition:transform .3s var(--ease); aspect-ratio:1; }
+    .gallery-item.tall { aspect-ratio:3/4; }
+    .gallery-item:hover { transform:scale(1.02); }
+    @media(max-width:700px) {
+      .gallery-collage { grid-template-columns:repeat(2,1fr); }
+      .gallery-item, .gallery-item.tall { aspect-ratio:1; }
+    }
 
     /* CONTACT */
     .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,5rem); align-items:start; }
@@ -236,6 +270,7 @@
     <li><a href="#contacto"    data-es="Contacto"    data-en="Contact">Contacto</a></li>
   </ul>
   <div class="nav-right">
+    <a href="cv-jon-garcia-es.pdf" download class="cv-btn" id="cv-btn">Descargar CV</a>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('es')">ES</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -254,6 +289,7 @@
   <a href="#habilidades" data-es="Habilidades" data-en="Skills"      onclick="toggleMenu()">Habilidades</a>
   <a href="#galeria"     data-es="Galería"     data-en="Gallery"     onclick="toggleMenu()">Galería</a>
   <a href="#contacto"    data-es="Contacto"    data-en="Contact"     onclick="toggleMenu()">Contacto</a>
+  <a href="cv-jon-garcia-es.pdf" download class="cv-btn" id="cv-btn-mobile">Descargar CV</a>
   <div class="lang-toggle" style="margin-top:1rem">
     <button class="lang-btn" onclick="setLang('es')">ES</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -270,6 +306,13 @@
        data-en="Industrial engineer specialized in product development, technology strategy and innovation applied to sports.">
       Ingeniero industrial especializado en desarrollo de producto, estrategia tecnológica e innovación aplicada al deporte.
     </p>
+    <div class="hero-stats reveal reveal-delay-2">
+      <div class="hero-stat"><span class="hero-stat-num">6+</span><span class="hero-stat-label" data-es="años en Voon Sports" data-en="years at Voon Sports">años en Voon Sports</span></div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat"><span class="hero-stat-num">3</span><span class="hero-stat-label" data-es="productos lanzados" data-en="products launched">productos lanzados</span></div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat"><span class="hero-stat-num">Real Sociedad</span><span class="hero-stat-label" data-es="case study oficial" data-en="official case study">case study oficial</span></div>
+    </div>
     <div class="hero-btns reveal reveal-delay-3">
       <a href="#experiencia" class="btn-primary" data-es="Ver experiencia" data-en="View experience">Ver experiencia</a>
       <a href="#contacto" class="btn-secondary" data-es="Contactar" data-en="Get in touch">Contactar</a>
@@ -532,27 +575,87 @@
   <div class="section-label reveal" data-es="HABILIDADES" data-en="SKILLS">HABILIDADES</div>
   <h2 class="section-title reveal" data-es="Skills &amp; Herramientas" data-en="Skills &amp; Tools">Skills &amp; Herramientas</h2>
   <p class="section-sub reveal" data-es="Tecnologías, plataformas e idiomas con los que trabajo." data-en="Technologies, platforms and languages I work with.">Tecnologías, plataformas e idiomas con los que trabajo.</p>
-  <div class="skills-grid">
-    <div class="skill-card reveal reveal-delay-1">
-      <div class="skill-category" data-es="TECNOLOGÍA" data-en="TECHNOLOGY">TECNOLOGÍA</div>
-      <div class="skill-list"><span class="skill-pill">C++</span><span class="skill-pill">Python</span><span class="skill-pill">MySQL</span><span class="skill-pill">Tia Portal</span><span class="skill-pill">Power BI</span><span class="skill-pill">Tableau</span><span class="skill-pill">Xcode</span></div>
+  <div class="skills-new-grid">
+
+    <div class="skill-block reveal reveal-delay-1">
+      <div class="skill-block-header">
+        <div class="skill-block-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="skill-block-title" data-es="Tecnología" data-en="Technology">Tecnología</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Python</span>
+        <span class="skill-tag highlight">C++</span>
+        <span class="skill-tag highlight">Power BI</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Tia Portal</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Xcode</span>
+      </div>
     </div>
-    <div class="skill-card reveal reveal-delay-2">
-      <div class="skill-category" data-es="IA &amp; HERRAMIENTAS" data-en="AI &amp; TOOLS">IA &amp; HERRAMIENTAS</div>
-      <div class="skill-list"><span class="skill-pill">Claude</span><span class="skill-pill">ChatGPT</span><span class="skill-pill">Lovable</span><span class="skill-pill">GitHub Copilot</span><span class="skill-pill">Cursor</span><span class="skill-pill">Notion AI</span></div>
+
+    <div class="skill-block reveal reveal-delay-2">
+      <div class="skill-block-header">
+        <div class="skill-block-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+        <div class="skill-block-title" data-es="IA &amp; Herramientas" data-en="AI &amp; Tools">IA &amp; Herramientas</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Claude</span>
+        <span class="skill-tag highlight">Lovable</span>
+        <span class="skill-tag highlight">Cursor</span>
+        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">GitHub Copilot</span>
+        <span class="skill-tag">Notion AI</span>
+      </div>
     </div>
-    <div class="skill-card reveal reveal-delay-2">
-      <div class="skill-category" data-es="NEGOCIO DIGITAL" data-en="DIGITAL BUSINESS">NEGOCIO DIGITAL</div>
-      <div class="skill-list"><span class="skill-pill">Shopify</span><span class="skill-pill">Google Ads</span><span class="skill-pill">Klaviyo</span><span class="skill-pill">Holded</span><span class="skill-pill">DaVinci</span><span class="skill-pill">Trello</span><span class="skill-pill">Photoshop</span><span class="skill-pill">Illustrator</span><span class="skill-pill">Microsoft 365</span></div>
+
+    <div class="skill-block reveal reveal-delay-3">
+      <div class="skill-block-header">
+        <div class="skill-block-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="skill-block-title" data-es="Negocio Digital" data-en="Digital Business">Negocio Digital</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Shopify</span>
+        <span class="skill-tag highlight">Google Ads</span>
+        <span class="skill-tag">Klaviyo</span>
+        <span class="skill-tag">Holded</span>
+        <span class="skill-tag">Trello</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Illustrator</span>
+        <span class="skill-tag">Microsoft 365</span>
+      </div>
     </div>
-    <div class="skill-card reveal reveal-delay-3">
-      <div class="skill-category" data-es="IDIOMAS" data-en="LANGUAGES">IDIOMAS</div>
-      <div class="skill-list"><span class="skill-pill" data-es="Español · Nativo" data-en="Spanish · Native">Español · Nativo</span><span class="skill-pill" data-es="Euskera · Nativo" data-en="Basque · Native">Euskera · Nativo</span><span class="skill-pill" data-es="Inglés · Fluido" data-en="English · Fluent">Inglés · Fluido</span></div>
+
+    <div class="skill-block reveal reveal-delay-1">
+      <div class="skill-block-header">
+        <div class="skill-block-icon"><svg viewBox="0 0 24 24"><path d="M2 5h10M7 2v3M12 5a15 15 0 0 1-3 7 15 15 0 0 1-5-4"/><path d="M22 22l-5-10-5 10M14 18h6"/></svg></div>
+        <div class="skill-block-title" data-es="Idiomas" data-en="Languages">Idiomas</div>
+      </div>
+      <div>
+        <div class="lang-item"><span class="lang-name" data-es="Español" data-en="Spanish">Español</span><span class="lang-level" data-es="Nativo" data-en="Native">Nativo</span></div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+        <div style="height:12px"></div>
+        <div class="lang-item"><span class="lang-name" data-es="Euskera" data-en="Basque">Euskera</span><span class="lang-level" data-es="Nativo" data-en="Native">Nativo</span></div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+        <div style="height:12px"></div>
+        <div class="lang-item"><span class="lang-name" data-es="Inglés" data-en="English">Inglés</span><span class="lang-level" data-es="Fluido" data-en="Fluent">Fluido</span></div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:88%"></div></div>
+      </div>
     </div>
-    <div class="skill-card reveal reveal-delay-4">
-      <div class="skill-category" data-es="INTERESES" data-en="INTERESTS">INTERESES</div>
-      <div class="skill-list"><span class="skill-pill" data-es="Trekking" data-en="Trekking">Trekking</span><span class="skill-pill" data-es="Viajes" data-en="Travel">Viajes</span><span class="skill-pill" data-es="Deportes de equipo" data-en="Team Sports">Deportes de equipo</span><span class="skill-pill">CrossFit</span><span class="skill-pill" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span></div>
+
+    <div class="skill-block reveal reveal-delay-2">
+      <div class="skill-block-header">
+        <div class="skill-block-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="skill-block-title" data-es="Intereses" data-en="Interests">Intereses</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">🏔️ <span data-es="Trekking" data-en="Trekking">Trekking</span></span>
+        <span class="skill-tag">✈️ <span data-es="Viajes" data-en="Travel">Viajes</span></span>
+        <span class="skill-tag">⚽ <span data-es="Fútbol" data-en="Football">Fútbol</span></span>
+        <span class="skill-tag">🏋️ CrossFit</span>
+        <span class="skill-tag">🍽️ <span data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span></span>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -560,17 +663,17 @@
 <section id="galeria">
   <div class="section-label reveal" data-es="GALERÍA" data-en="GALLERY">GALERÍA</div>
   <h2 class="section-title reveal" data-es="Momentos" data-en="Moments">Momentos</h2>
-  <p class="section-sub reveal" data-es="Vida personal y profesional." data-en="Personal and professional life.">Vida personal y profesional.</p>
-  <div class="gallery-grid">
-    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-jordania.jpeg" alt="Jordania" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-desierto.jpeg" alt="Wadi Rum" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-safari.jpeg" alt="Tanzania" class="gallery-img" style="object-position:15% 10%;"></div>
-    <div class="gallery-item reveal reveal-delay-4"><img src="images/galeria-trekking.jpeg" alt="Nepal MTB" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-esquiar.jpeg" alt="Esqui" class="gallery-img" style="object-position:center center;"></div>
-    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-voon2.jpeg" alt="Voon Sports" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-voon3.jpeg" alt="Real Sociedad" class="gallery-img" style="object-position:15% center;filter:brightness(1.3);"></div>
-    <div class="gallery-item reveal reveal-delay-4"><img src="images/galeria-trekking2.jpeg" alt="Torres del Paine" class="gallery-img" style="object-position:75% center;"></div>
-    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-trekking1.jpeg" alt="Torres del Paine" class="gallery-img" style="object-position:center 75%;"></div>
+
+  <div class="gallery-collage">
+    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-jordania.jpeg" alt="Jordania" class="gallery-img" style="object-position:center 40%;"></div>
+    <div class="gallery-item tall reveal reveal-delay-2"><img src="images/galeria-desierto.jpeg" alt="Wadi Rum" class="gallery-img"></div>
+    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-safari.jpeg" alt="Tanzania" class="gallery-img" style="object-position:20% center;"></div>
+    <div class="gallery-item tall reveal reveal-delay-1"><img src="images/galeria-trekking.jpeg" alt="Nepal MTB" class="gallery-img" style="object-position:center 60%;"></div>
+    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-esquiar.jpeg" alt="Esqui" class="gallery-img"></div>
+    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-voon2.jpeg" alt="Voon Sports" class="gallery-img"></div>
+    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-voon3.jpeg" alt="Real Sociedad" class="gallery-img" style="object-position:15% center;filter:brightness(1.3);"></div>
+    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-trekking2.jpeg" alt="Torres del Paine" class="gallery-img" style="object-position:75% 65%;"></div>
+    <div class="gallery-item tall reveal reveal-delay-3"><img src="images/galeria-trekking1.jpeg" alt="Patagonia" class="gallery-img" style="object-position:center 70%;"></div>
   </div>
 </section>
 
@@ -584,6 +687,7 @@
       <div class="contact-items reveal">
         <div class="contact-item"><div class="contact-icon">✉️</div><a href="mailto:jongarciaecheverria@gmail.com">jongarciaecheverria@gmail.com</a></div>
         <div class="contact-item"><div class="contact-icon">📍</div><span data-es="Donostia – San Sebastián" data-en="Donostia – San Sebastián">Donostia – San Sebastián</span></div>
+        <div class="contact-item"><div class="contact-icon">📱</div><a href="tel:+34636063297">+34 636 063 297</a></div>
         <div class="contact-item"><div class="contact-icon">💼</div><a href="https://www.linkedin.com/in/jon-garcia-echeverria-257634b2" target="_blank">LinkedIn</a></div>
       </div>
       <div class="contact-socials reveal">
@@ -593,10 +697,14 @@
       </div>
     </div>
     <div class="reveal">
-      <div class="form-field"><label class="form-label" data-es="Nombre" data-en="Name">Nombre</label><input type="text" class="form-input"/></div>
-      <div class="form-field"><label class="form-label">Email</label><input type="email" class="form-input"/></div>
-      <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label><textarea class="form-textarea"></textarea></div>
-      <button class="btn-primary" type="button" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+      <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:16px">
+        <input type="hidden" name="form-name" value="contacto"/>
+        <p style="display:none"><input name="bot-field"/></p>
+        <div class="form-field"><label class="form-label" data-es="Nombre" data-en="Name">Nombre</label><input type="text" name="nombre" class="form-input" required/></div>
+        <div class="form-field"><label class="form-label">Email</label><input type="email" name="email" class="form-input" required/></div>
+        <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label><textarea name="mensaje" class="form-textarea"></textarea></div>
+        <button class="btn-primary" type="submit" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+      </form>
     </div>
   </div>
 </section>
