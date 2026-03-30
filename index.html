@@ -3,256 +3,246 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jon García Echeverría</title>
+  <title>Álvaro García Echeverría</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:     #0c0c0c;
-      --bg2:    #111111;
-      --card:   #181818;
-      --border: rgba(255,255,255,0.07);
-      --border-h: rgba(255,255,255,0.14);
-      --accent: #c9a96e;
-      --accent-dim: rgba(201,169,110,0.12);
-      --text:   #e8e4de;
-      --muted:  #7a7570;
-      --muted2: #3e3c3a;
-      --white:  #f5f2ed;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
+      --bg:       #F8F8F8;
+      --bg2:      #FFFFFF;
+      --card:     #FFFFFF;
+      --border:   #EAEAEA;
+      --border-h: #D0D0D0;
+      --accent:   #4A7C72;
+      --accent-dim: rgba(74,124,114,0.08);
+      --text:     #1A1A1A;
+      --muted:    #6B6B6B;
+      --muted2:   #AAAAAA;
+      --white:    #FFFFFF;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --nav-h: 64px;
+      --nav-h: 60px;
+      --max-w: 960px;
     }
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
-    body { background:var(--bg); color:var(--text); font-family:var(--font-body); font-weight:300; line-height:1.75; overflow-x:hidden; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font-body); font-weight:400; line-height:1.75; overflow-x:hidden; font-size:16px; }
     ::-webkit-scrollbar { width:3px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
-    ::-webkit-scrollbar-thumb { background:var(--muted2); border-radius:2px; }
-    ::selection { background:var(--accent); color:#000; }
+    ::-webkit-scrollbar-thumb { background:var(--border-h); border-radius:2px; }
+    ::selection { background:var(--accent); color:#fff; }
 
     /* NAV */
     nav {
       position:fixed; top:0; left:0; right:0; z-index:200;
       height:var(--nav-h);
       display:flex; align-items:center; justify-content:space-between;
-      padding:0 clamp(1.25rem,5vw,3.5rem);
-      background:rgba(12,12,12,0.82);
-      backdrop-filter:blur(20px) saturate(160%);
+      padding:0 clamp(1.25rem,5vw,3rem);
+      background:rgba(248,248,248,0.92);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid transparent;
-      transition:border-color .4s;
+      transition:border-color .3s;
     }
     nav.scrolled { border-bottom-color:var(--border); }
-    .nav-logo { font-family:var(--font-display); font-size:1.3rem; font-weight:400; color:var(--white); text-decoration:none; letter-spacing:-.02em; }
+    .nav-logo { font-size:1.1rem; font-weight:600; color:var(--text); text-decoration:none; letter-spacing:-.02em; }
     .nav-logo em { color:var(--accent); font-style:normal; }
-    .nav-center { display:flex; align-items:center; gap:2.5rem; list-style:none; }
-    .nav-center a { font-size:.72rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
-    .nav-center a:hover { color:var(--white); }
+    .nav-center { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-center a { font-size:.78rem; font-weight:400; letter-spacing:.04em; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-center a:hover { color:var(--text); }
     .nav-right { display:flex; align-items:center; gap:1rem; }
 
     /* CV button */
-    .cv-btn { font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); text-decoration:none; border:1px solid rgba(201,169,110,.3); padding:6px 14px; border-radius:6px; transition:all .2s; white-space:nowrap; }
-    .cv-btn:hover { background:var(--accent-dim); border-color:var(--accent); }
-    @media(max-width:900px) { .cv-btn { display:inline-block; } }
-    @media(max-width:900px) { .mobile-menu .cv-btn { display:inline-block; font-size:.85rem; margin-top:.5rem; } }
+    .cv-btn { font-size:.75rem; font-weight:500; color:var(--accent); text-decoration:none; border:1px solid var(--accent); padding:5px 14px; border-radius:4px; transition:all .2s; white-space:nowrap; }
+    .cv-btn:hover { background:var(--accent); color:#fff; }
+    @media(max-width:900px) { .cv-btn { display:none; } }
 
     /* Lang toggle */
-    .lang-toggle { display:flex; align-items:center; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
-    .lang-btn { background:none; border:none; color:var(--muted); padding:5px 12px; font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; font-family:var(--font-body); transition:all .2s; }
-    .lang-btn.active { background:var(--accent); color:#000; }
-    .lang-btn:not(.active):hover { color:var(--white); }
+    .lang-toggle { display:flex; align-items:center; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+    .lang-btn { background:none; border:none; color:var(--muted); padding:5px 11px; font-size:.72rem; font-weight:500; cursor:pointer; font-family:var(--font-body); transition:all .2s; }
+    .lang-btn.active { background:var(--text); color:#fff; }
+    .lang-btn:not(.active):hover { color:var(--text); }
 
     /* Hamburger */
     .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
-    .hamburger span { display:block; width:22px; height:1.5px; background:var(--text); transition:all .3s var(--ease); transform-origin:center; }
+    .hamburger span { display:block; width:20px; height:1.5px; background:var(--text); transition:all .3s var(--ease); transform-origin:center; }
     .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
 
     /* Mobile menu */
-    .mobile-menu { display:none; position:fixed; top:var(--nav-h); left:0; right:0; bottom:0; background:rgba(12,12,12,0.97); backdrop-filter:blur(20px); z-index:150; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0; pointer-events:none; transition:opacity .3s var(--ease); }
+    .mobile-menu { display:none; position:fixed; top:var(--nav-h); left:0; right:0; bottom:0; background:rgba(248,248,248,0.98); backdrop-filter:blur(12px); z-index:150; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0; pointer-events:none; transition:opacity .3s var(--ease); }
     .mobile-menu.open { opacity:1; pointer-events:all; }
-    .mobile-menu a { font-family:var(--font-display); font-size:clamp(2rem,7vw,2.8rem); font-weight:300; color:var(--text); text-decoration:none; transition:color .2s; }
+    .mobile-menu a { font-size:clamp(1.4rem,5vw,2rem); font-weight:300; color:var(--text); text-decoration:none; transition:color .2s; }
     .mobile-menu a:hover { color:var(--accent); }
 
     /* Scroll reveal */
-    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal { opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
     .reveal.visible { opacity:1; transform:translateY(0); }
-    .reveal-delay-1 { transition-delay:.1s; }
-    .reveal-delay-2 { transition-delay:.2s; }
-    .reveal-delay-3 { transition-delay:.3s; }
-    .reveal-delay-4 { transition-delay:.4s; }
+    .reveal-delay-1 { transition-delay:.08s; }
+    .reveal-delay-2 { transition-delay:.16s; }
+    .reveal-delay-3 { transition-delay:.24s; }
+    .reveal-delay-4 { transition-delay:.32s; }
 
-    /* Sections */
-    section { padding:clamp(5rem,10vw,7rem) clamp(1.25rem,8vw,5rem); }
-    section:nth-child(even) { background:var(--bg2); }
-    .section-label { font-size:.67rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
-    .section-title { font-family:var(--font-display); font-size:clamp(2rem,5vw,3rem); font-weight:400; color:var(--white); letter-spacing:-.02em; line-height:1.15; margin-bottom:14px; }
-    .section-sub { font-size:.95rem; color:var(--muted); max-width:500px; margin-bottom:56px; }
+    /* LAYOUT */
+    .container { max-width:var(--max-w); margin:0 auto; padding:0 clamp(1.25rem,5vw,3rem); }
+    section { padding:clamp(4rem,8vw,7rem) clamp(1.25rem,5vw,3rem); max-width:var(--max-w); margin:0 auto; }
+    section:nth-child(even) { background:transparent; }
 
-    /* HERO STATS */
-    .hero-stats { display:flex; align-items:center; gap:1.5rem; margin-bottom:2.5rem; flex-wrap:wrap; }
-    .hero-stat { display:flex; flex-direction:column; gap:3px; }
-    .hero-stat-num { font-family:var(--font-display); font-size:1.4rem; font-weight:400; color:var(--white); letter-spacing:-.02em; line-height:1; }
-    .hero-stat-label { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
-    .hero-stat-div { width:1px; height:28px; background:var(--border); }
+    .section-label { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+    .section-title { font-size:clamp(1.8rem,4vw,2.6rem); font-weight:300; color:var(--text); letter-spacing:-.02em; line-height:1.2; margin-bottom:12px; }
+    .section-sub { font-size:.95rem; color:var(--muted); max-width:480px; margin-bottom:48px; }
 
     /* HERO */
-    .hero { min-height:100vh; display:flex; align-items:center; padding:0 clamp(1.25rem,8vw,5rem); padding-top:var(--nav-h); position:relative; overflow:hidden; }
-    .hero::before { content:''; position:absolute; top:0; right:0; width:55%; height:100%; background:radial-gradient(ellipse at 80% 50%, rgba(201,169,110,.055) 0%, transparent 65%); pointer-events:none; }
-    .hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:.72rem; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; }
-    .hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
-    .hero h1 { font-family:var(--font-display); font-size:clamp(3rem,8vw,5.5rem); font-weight:400; line-height:1.05; color:var(--white); letter-spacing:-.03em; margin-bottom:28px; }
-    .hero h1 em { color:var(--accent); font-style:italic; }
-    .hero-desc { font-size:1.05rem; color:var(--muted); max-width:480px; margin-bottom:44px; line-height:1.8; }
-    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
-    .btn-primary { display:inline-flex; align-items:center; background:var(--accent); color:#000; padding:13px 28px; border-radius:8px; text-decoration:none; font-weight:500; font-size:.88rem; letter-spacing:.02em; transition:all .2s; border:none; cursor:pointer; font-family:var(--font-body); }
-    .btn-primary:hover { background:var(--white); transform:translateY(-1px); }
-    .btn-secondary { display:inline-flex; align-items:center; background:transparent; color:var(--text); padding:13px 28px; border-radius:8px; text-decoration:none; font-weight:300; font-size:.88rem; border:1px solid var(--border); transition:all .2s; }
-    .btn-secondary:hover { border-color:var(--border-h); color:var(--white); }
+    .hero { min-height:100vh; display:flex; align-items:center; padding:0 clamp(1.25rem,5vw,3rem); padding-top:var(--nav-h); max-width:var(--max-w); margin:0 auto; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:24px; }
+    .hero-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
+    .hero h1 { font-size:clamp(2.8rem,7vw,5rem); font-weight:300; line-height:1.08; color:var(--text); letter-spacing:-.03em; margin-bottom:24px; }
+    .hero h1 em { font-style:italic; color:var(--accent); }
+    .hero-desc { font-size:1rem; color:var(--muted); max-width:440px; margin-bottom:40px; line-height:1.8; }
+    .hero-stats { display:flex; align-items:center; gap:2rem; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .hero-stat { display:flex; flex-direction:column; gap:2px; }
+    .hero-stat-num { font-size:1.3rem; font-weight:300; color:var(--text); letter-spacing:-.02em; line-height:1; }
+    .hero-stat-label { font-size:.7rem; color:var(--muted); letter-spacing:.04em; }
+    .hero-stat-div { width:1px; height:24px; background:var(--border); }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; background:var(--text); color:#fff; padding:11px 24px; border-radius:4px; text-decoration:none; font-weight:500; font-size:.85rem; transition:all .2s; border:none; cursor:pointer; font-family:var(--font-body); }
+    .btn-primary:hover { background:var(--accent); }
+    .btn-secondary { display:inline-flex; align-items:center; background:transparent; color:var(--text); padding:11px 24px; border-radius:4px; text-decoration:none; font-weight:400; font-size:.85rem; border:1px solid var(--border); transition:all .2s; }
+    .btn-secondary:hover { border-color:var(--text); }
 
     /* ABOUT */
-    .about-grid { display:grid; grid-template-columns:260px 1fr; gap:clamp(2.5rem,6vw,5rem); align-items:start; }
-    .about-photo { width:100%; aspect-ratio:3/4; border-radius:4px; overflow:hidden; background:var(--card); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
-    .about-photo-emoji { font-size:3.5rem; opacity:.3; }
-    .about-photo-hint { font-size:.72rem; color:var(--muted2); letter-spacing:.05em; text-align:center; padding:0 1rem; }
-    .about-name { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,1.9rem); font-weight:400; color:var(--white); letter-spacing:-.02em; margin-bottom:22px; }
-    .about-text p { color:var(--muted); font-size:.95rem; margin-bottom:16px; }
-    .about-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
-    .about-link { display:flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--border); color:var(--muted); text-decoration:none; padding:8px 16px; border-radius:6px; font-size:.82rem; transition:all .2s; }
+    .about-grid { display:grid; grid-template-columns:240px 1fr; gap:clamp(2.5rem,6vw,5rem); align-items:start; }
+    .about-photo { width:100%; aspect-ratio:3/4; border-radius:4px; overflow:hidden; background:var(--border); }
+    .about-name { font-size:1.4rem; font-weight:400; color:var(--text); letter-spacing:-.01em; margin-bottom:20px; }
+    .about-text p { color:var(--muted); font-size:.95rem; margin-bottom:14px; line-height:1.8; }
+    .about-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+    .about-link { display:flex; align-items:center; gap:6px; color:var(--muted); text-decoration:none; padding:6px 14px; border-radius:4px; font-size:.82rem; border:1px solid var(--border); transition:all .2s; }
     .about-link:hover { border-color:var(--accent); color:var(--accent); }
 
     /* TIMELINE */
-    .timeline { position:relative; padding-left:28px; }
-    .timeline::before { content:''; position:absolute; left:4px; top:10px; bottom:10px; width:1px; background:linear-gradient(to bottom, var(--accent), transparent); }
-    .timeline-item { position:relative; margin-bottom:48px; }
-    .timeline-item::before { content:''; position:absolute; left:-27px; top:8px; width:8px; height:8px; border-radius:50%; background:var(--accent); opacity:.8; }
-    .timeline-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
-    .timeline-title { font-size:1rem; font-weight:500; color:var(--white); }
+    .timeline { position:relative; padding-left:24px; }
+    .timeline::before { content:''; position:absolute; left:3px; top:8px; bottom:8px; width:1px; background:var(--border); }
+    .timeline-item { position:relative; margin-bottom:40px; }
+    .timeline-item::before { content:''; position:absolute; left:-24px; top:8px; width:7px; height:7px; border-radius:50%; background:var(--accent); opacity:.7; }
+    .timeline-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+    .timeline-title { font-size:.95rem; font-weight:500; color:var(--text); }
     .timeline-company { font-size:.85rem; color:var(--accent); margin-bottom:2px; }
-    .timeline-date { font-size:.75rem; color:var(--muted); background:var(--card); padding:3px 10px; border-radius:4px; border:1px solid var(--border); white-space:nowrap; flex-shrink:0; }
+    .timeline-date { font-size:.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:4px; border:1px solid var(--border); white-space:nowrap; flex-shrink:0; }
     .timeline-desc { color:var(--muted); font-size:.88rem; }
-    .timeline-desc ul { padding-left:16px; margin-top:8px; }
-    .timeline-desc li { margin-bottom:5px; }
+    .timeline-desc ul { padding-left:14px; margin-top:6px; }
+    .timeline-desc li { margin-bottom:4px; }
 
     /* EDUCATION */
-    .edu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
-    .edu-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px; transition:border-color .2s; }
-    .edu-card:hover { border-color:var(--border-h); }
-    .edu-year { font-size:.75rem; color:var(--muted); margin-bottom:12px; letter-spacing:.04em; }
-    .edu-degree { font-size:.95rem; font-weight:500; color:var(--white); margin-bottom:6px; }
-    .edu-school { font-size:.85rem; color:var(--muted); }
+    .edu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+    .edu-card { background:var(--card); padding:24px; transition:background .2s; }
+    .edu-card:hover { background:var(--bg); }
+    .edu-year { font-size:.72rem; color:var(--muted2); margin-bottom:10px; letter-spacing:.04em; }
+    .edu-degree { font-size:.92rem; font-weight:500; color:var(--text); margin-bottom:5px; }
+    .edu-school { font-size:.83rem; color:var(--muted); }
 
     /* PROJECTS */
-    .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
-    .project-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px; transition:all .3s var(--ease); position:relative; overflow:hidden; }
-    .project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:var(--accent); opacity:0; transition:opacity .3s; }
-    .project-card:hover { border-color:var(--border-h); transform:translateY(-4px); }
-    .project-card:hover::before { opacity:1; }
-    .project-icon { font-size:2rem; margin-bottom:18px; display:block; }
-    .project-title { font-size:1rem; font-weight:500; color:var(--white); margin-bottom:10px; }
-    .project-desc { font-size:.87rem; color:var(--muted); margin-bottom:20px; line-height:1.65; }
-    .project-tags { display:flex; flex-wrap:wrap; gap:7px; }
-    .tag { background:var(--accent-dim); color:var(--accent); padding:3px 10px; border-radius:4px; font-size:.75rem; border:1px solid rgba(201,169,110,.2); }
-
-    .project-more { font-size:.78rem; color:var(--accent); margin-top:16px; font-weight:400; letter-spacing:.04em; }
-
-    /* MODAL */
-    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:300; backdrop-filter:blur(6px); }
-    .modal-overlay.open { display:block; }
-    .modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.97); z-index:400; width:min(680px,92vw); max-height:85vh; overflow-y:auto; background:var(--bg2); border:1px solid var(--border-h); border-radius:14px; padding:clamp(1.5rem,4vw,2.5rem); opacity:0; transition:opacity .25s var(--ease), transform .25s var(--ease); }
-    .modal.open { display:block; opacity:1; transform:translate(-50%,-50%) scale(1); }
-    .modal-close { position:absolute; top:1rem; right:1rem; background:var(--card); border:1px solid var(--border); color:var(--muted); width:32px; height:32px; border-radius:6px; cursor:pointer; font-size:.85rem; display:flex; align-items:center; justify-content:center; transition:all .2s; }
-    .modal-close:hover { color:var(--white); border-color:var(--border-h); }
-    .modal-header { display:flex; align-items:center; gap:16px; margin-bottom:1.5rem; }
-    .modal-icon { font-size:2.2rem; }
-    .modal-title { font-family:var(--font-display); font-size:1.5rem; font-weight:400; color:var(--white); letter-spacing:-.02em; }
-    .modal-subtitle { font-size:.82rem; color:var(--accent); margin-top:2px; }
-    .modal-images { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-bottom:1.5rem; }
-    .modal-images:empty { display:none; }
-    .modal-img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; border:1px solid var(--border); }
-    .modal-body p { color:var(--muted); font-size:.95rem; margin-bottom:1.5rem; line-height:1.8; }
-    .modal-highlights { display:flex; flex-direction:column; gap:16px; margin-bottom:1.5rem; }
-    .modal-highlight { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px 20px; }
-    .modal-highlight-title { font-size:.78rem; font-weight:500; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
-    .modal-highlight-text { font-size:.88rem; color:var(--muted); line-height:1.7; }
-    .modal-tags { display:flex; flex-wrap:wrap; gap:8px; padding-top:1rem; border-top:1px solid var(--border); }
-    .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
-    .skill-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; }
-    .skill-category { font-size:.67rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--muted2); margin-bottom:16px; }
-    .skill-list { display:flex; flex-wrap:wrap; gap:8px; }
-    .skill-pill { background:var(--bg); border:1px solid var(--border); color:var(--muted); padding:5px 12px; border-radius:5px; font-size:.8rem; transition:all .2s; }
-    .skill-pill:hover { border-color:var(--border-h); color:var(--text); }
-
-    /* TRAVEL STRIP */
-    .travel-strip { margin-bottom: 48px; }
-    .travel-strip-label { font-size:.67rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--muted2); margin-bottom:12px; }
-    .travel-countries { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
-    .travel-countries span { font-size:.88rem; color:var(--muted); }
-    .travel-countries .sep { color:var(--muted2); }
+    .projects-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+    .project-card { background:var(--card); padding:28px; transition:background .2s; position:relative; cursor:pointer; }
+    .project-card:hover { background:var(--bg); }
+    .project-logo-wrap { height:40px; display:flex; align-items:center; margin-bottom:16px; }
+    .project-icon { font-size:1.4rem; margin-bottom:14px; display:block; }
+    .project-title { font-size:.95rem; font-weight:500; color:var(--text); margin-bottom:8px; }
+    .project-desc { font-size:.85rem; color:var(--muted); margin-bottom:16px; line-height:1.65; }
+    .project-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .tag { background:var(--bg); color:var(--muted); padding:3px 9px; border-radius:3px; font-size:.73rem; border:1px solid var(--border); }
+    .project-more { font-size:.78rem; color:var(--accent); margin-top:14px; }
 
     /* SKILLS REDESIGN */
-    .skills-new-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; }
-    .skill-block { background:var(--card); padding:2rem; border:1px solid var(--border); transition:border-color .2s; }
-    .skill-block:hover { border-color:var(--border-h); }
-    .skill-block-header { display:flex; align-items:center; gap:14px; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
-    .skill-block-icon { width:38px; height:38px; border-radius:8px; background:var(--accent-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .skill-block-icon svg { width:18px; height:18px; stroke:var(--accent); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
-    .skill-block-title { font-size:.72rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
-    .skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
-    .skill-tag { font-size:.8rem; color:var(--muted); background:var(--bg); border:1px solid var(--border); padding:5px 12px; border-radius:4px; transition:all .2s; }
-    .skill-tag:hover { color:var(--text); border-color:var(--border-h); }
-    .skill-tag.highlight { color:var(--accent); border-color:rgba(201,169,110,.25); background:var(--accent-dim); }
-    .lang-item { display:flex; align-items:center; justify-content:space-between; padding:6px 0; }
+    .skills-new-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+    .skill-block { background:var(--card); padding:24px; transition:background .2s; }
+    .skill-block:hover { background:var(--bg); }
+    .skill-block-header { display:flex; align-items:center; gap:12px; margin-bottom:1rem; padding-bottom:.75rem; border-bottom:1px solid var(--border); }
+    .skill-block-icon { width:32px; height:32px; border-radius:4px; background:var(--accent-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .skill-block-icon svg { width:16px; height:16px; stroke:var(--accent); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .skill-block-title { font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .skill-tag { font-size:.78rem; color:var(--muted); background:var(--bg); border:1px solid var(--border); padding:4px 10px; border-radius:3px; }
+    .skill-tag.highlight { color:var(--accent); border-color:rgba(74,124,114,.2); background:var(--accent-dim); }
+    .lang-item { display:flex; align-items:center; justify-content:space-between; padding:5px 0; }
     .lang-name { font-size:.88rem; color:var(--text); }
-    .lang-level { font-size:.75rem; color:var(--accent); letter-spacing:.06em; }
-    .lang-bar { height:2px; background:var(--border); border-radius:1px; margin-top:4px; overflow:hidden; }
-    .lang-bar-fill { height:100%; background:var(--accent); border-radius:1px; }
+    .lang-level { font-size:.72rem; color:var(--accent); }
+    .lang-bar { height:1px; background:var(--border); margin-top:4px; overflow:hidden; }
+    .lang-bar-fill { height:100%; background:var(--accent); }
 
     /* GALLERY */
-    .gallery-collage { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; align-items:center; }
+    .gallery-collage { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
     .gallery-img { width:100%; height:100%; object-fit:cover; display:block; }
-    .gallery-item { border-radius:8px; overflow:hidden; position:relative; cursor:pointer; transition:transform .3s var(--ease); aspect-ratio:1; }
+    .gallery-item { border-radius:4px; overflow:hidden; position:relative; cursor:pointer; transition:opacity .2s; aspect-ratio:1; }
     .gallery-item.tall { aspect-ratio:3/4; }
-    .gallery-item:hover { transform:scale(1.02); }
+    .gallery-item:hover { opacity:.92; }
     @media(max-width:700px) {
       .gallery-collage { grid-template-columns:repeat(2,1fr); }
       .gallery-item, .gallery-item.tall { aspect-ratio:1; }
     }
 
     /* CONTACT */
-    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,5rem); align-items:start; }
-    .contact-lead { font-size:1rem; color:var(--muted); margin-bottom:36px; line-height:1.8; }
-    .contact-items { display:flex; flex-direction:column; gap:16px; }
-    .contact-item { display:flex; align-items:center; gap:14px; font-size:.9rem; }
-    .contact-icon { width:42px; height:42px; background:var(--card); border:1px solid var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .contact-lead { font-size:.95rem; color:var(--muted); margin-bottom:32px; line-height:1.8; max-width:400px; }
+    .contact-items { display:flex; flex-direction:column; gap:14px; }
+    .contact-item { display:flex; align-items:center; gap:12px; font-size:.9rem; }
+    .contact-icon { width:36px; height:36px; background:var(--bg); border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
     .contact-item a { color:var(--text); text-decoration:none; transition:color .2s; }
     .contact-item a:hover { color:var(--accent); }
-    .contact-socials { display:flex; gap:10px; margin-top:28px; }
-    .social-btn { width:42px; height:42px; background:var(--card); border:1px solid var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; text-decoration:none; transition:all .2s; }
-    .social-btn:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .form-field { margin-bottom:16px; }
-    .form-label { font-size:.78rem; color:var(--muted); display:block; margin-bottom:7px; letter-spacing:.04em; }
-    .form-input, .form-textarea { width:100%; background:var(--card); border:1px solid var(--border); color:var(--text); padding:11px 16px; border-radius:8px; font-family:var(--font-body); font-size:.9rem; font-weight:300; outline:none; transition:border-color .2s; }
-    .form-input:focus, .form-textarea:focus { border-color:var(--accent); }
-    .form-textarea { resize:vertical; min-height:130px; }
+
+    /* MODAL */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.3); z-index:300; backdrop-filter:blur(4px); }
+    .modal-overlay.open { display:block; }
+    .modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.98); z-index:400; width:min(660px,92vw); max-height:85vh; overflow-y:auto; background:#fff; border:1px solid var(--border); border-radius:8px; padding:clamp(1.5rem,4vw,2.5rem); opacity:0; transition:opacity .2s var(--ease), transform .2s var(--ease); }
+    .modal.open { display:block; opacity:1; transform:translate(-50%,-50%) scale(1); }
+    .modal-close { position:absolute; top:1rem; right:1rem; background:var(--bg); border:1px solid var(--border); color:var(--muted); width:30px; height:30px; border-radius:4px; cursor:pointer; font-size:.8rem; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+    .modal-close:hover { color:var(--text); border-color:var(--border-h); }
+    .modal-header { display:flex; align-items:center; gap:14px; margin-bottom:1.5rem; }
+    .modal-icon { font-size:1.8rem; }
+    .modal-title { font-size:1.3rem; font-weight:400; color:var(--text); letter-spacing:-.01em; }
+    .modal-subtitle { font-size:.8rem; color:var(--muted); margin-top:2px; }
+    .modal-images { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-bottom:1.5rem; }
+    .modal-images:empty { display:none; }
+    .modal-img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; border:1px solid var(--border); }
+    .modal-body p { color:var(--muted); font-size:.92rem; margin-bottom:1.25rem; line-height:1.8; }
+    .modal-highlights { display:flex; flex-direction:column; gap:12px; margin-bottom:1.5rem; }
+    .modal-highlight { background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:16px 18px; }
+    .modal-highlight-title { font-size:.68rem; font-weight:600; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
+    .modal-highlight-text { font-size:.87rem; color:var(--muted); line-height:1.7; }
+    .modal-bullets { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+    .modal-bullets li { font-size:.87rem; color:var(--muted); line-height:1.6; display:flex; align-items:flex-start; gap:8px; }
+    .modal-bullets li::before { content:'—'; color:var(--accent); flex-shrink:0; font-size:.78rem; margin-top:2px; }
+    .modal-badge { display:inline-block; background:var(--accent-dim); color:var(--accent); border:1px solid rgba(74,124,114,.2); font-size:.7rem; padding:2px 7px; border-radius:3px; font-weight:500; }
+    .modal-section { margin-bottom:1.25rem; }
+    .modal-section-title { font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid var(--border); }
+    .modal-tags { display:flex; flex-wrap:wrap; gap:6px; padding-top:1rem; border-top:1px solid var(--border); }
+
+    /* COACHING */
+    .coaching-profile { background:var(--accent-dim); border:1px solid rgba(74,124,114,.15); border-left:2px solid var(--accent); border-radius:0 4px 4px 0; padding:12px 16px; margin-top:12px; display:flex; flex-direction:column; gap:8px; }
+    .coaching-profile-item { display:flex; align-items:flex-start; gap:8px; }
+    .coaching-profile-icon { color:var(--accent); font-size:.7rem; margin-top:4px; flex-shrink:0; }
+    .coaching-profile-text { font-size:.83rem; color:var(--text); line-height:1.6; }
+    .coaching-profile-text strong { color:var(--accent); font-weight:500; }
 
     /* FOOTER */
-    footer { background:var(--bg); border-top:1px solid var(--border); padding:28px clamp(1.25rem,8vw,5rem); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-    .footer-text { font-size:.8rem; color:var(--muted2); }
+    footer { border-top:1px solid var(--border); padding:24px clamp(1.25rem,5vw,3rem); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; max-width:var(--max-w); margin:0 auto; }
+    .footer-text { font-size:.78rem; color:var(--muted2); }
 
     /* RESPONSIVE */
     @media (max-width:900px) {
       .nav-center { display:none; }
       .hamburger { display:flex; }
       .mobile-menu { display:flex; }
+      @media(max-width:900px) { .mobile-menu .cv-btn { display:inline-block; font-size:.85rem; margin-top:.5rem; } }
     }
     @media (max-width:700px) {
       .about-grid { grid-template-columns:1fr; }
-      .about-photo { max-width:220px; aspect-ratio:1; }
-      .contact-grid { grid-template-columns:1fr; }
+      .about-photo { max-width:200px; aspect-ratio:1; }
+      .projects-grid { grid-template-columns:1fr; }
+      .projects-grid .project-card[style*="grid-column"] { grid-column:1; }
+      .skills-new-grid { grid-template-columns:1fr; }
+      .skills-new-grid .skill-block[style*="grid-column"] { grid-column:1; }
+      .edu-grid { grid-template-columns:1fr; }
     }
     @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } }
   </style>
@@ -260,17 +250,17 @@
 <body>
 
 <nav id="navbar">
-  <a href="#inicio" class="nav-logo">Jon<em>.</em></a>
+  <a href="#inicio" class="nav-logo">Álvaro<em>.</em></a>
   <ul class="nav-center">
     <li><a href="#sobre-mi"    data-es="Sobre mí"    data-en="About">Sobre mí</a></li>
-    <li><a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+    <li><a href="#experiencia" data-es="Recorrido" data-en="Journey">Recorrido</a></li>
     <li><a href="#proyectos"   data-es="Proyectos"   data-en="Projects">Proyectos</a></li>
-    <li><a href="#habilidades" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
+    <li><a href="#habilidades" data-es="Herramientas" data-en="Tools">Herramientas</a></li>
     <li><a href="#galeria"     data-es="Galería"     data-en="Gallery">Galería</a></li>
     <li><a href="#contacto"    data-es="Contacto"    data-en="Contact">Contacto</a></li>
   </ul>
   <div class="nav-right">
-    <a href="cv-jon-garcia-es.pdf" download class="cv-btn" id="cv-btn">Descargar CV</a>
+    <a href="cv-alvaro-garcia-es.pdf" download class="cv-btn" id="cv-btn">Descargar CV</a>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('es')">ES</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -289,7 +279,7 @@
   <a href="#habilidades" data-es="Habilidades" data-en="Skills"      onclick="toggleMenu()">Habilidades</a>
   <a href="#galeria"     data-es="Galería"     data-en="Gallery"     onclick="toggleMenu()">Galería</a>
   <a href="#contacto"    data-es="Contacto"    data-en="Contact"     onclick="toggleMenu()">Contacto</a>
-  <a href="cv-jon-garcia-es.pdf" download class="cv-btn" id="cv-btn-mobile">Descargar CV</a>
+  <a href="cv-alvaro-garcia-es.pdf" download class="cv-btn" id="cv-btn-mobile">Descargar CV</a>
   <div class="lang-toggle" style="margin-top:1rem">
     <button class="lang-btn" onclick="setLang('es')">ES</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -299,23 +289,23 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div>
-    <div class="hero-eyebrow reveal">CTO &amp; Product Strategy Leader</div>
-    <h1 class="reveal reveal-delay-1">Hola, soy<br/><em>Jon García</em><br/>Echeverría</h1>
+    <div class="hero-eyebrow reveal">R&amp;D Engineer · Project Lead · Product Development</div>
+    <h1 class="reveal reveal-delay-1">Hola, soy<br/><em>Álvaro García</em><br/>Echeverría</h1>
     <p class="hero-desc reveal reveal-delay-2"
        data-es="Ingeniero industrial especializado en desarrollo de producto, estrategia tecnológica e innovación aplicada al deporte."
        data-en="Industrial engineer specialized in product development, technology strategy and innovation applied to sports.">
       Ingeniero industrial especializado en desarrollo de producto, estrategia tecnológica e innovación aplicada al deporte.
     </p>
     <div class="hero-stats reveal reveal-delay-2">
-      <div class="hero-stat"><span class="hero-stat-num">6+</span><span class="hero-stat-label" data-es="años en Voon Sports" data-en="years at Voon Sports">años en Voon Sports</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">7+</span><span class="hero-stat-label" data-es="años en ABB-Niessen" data-en="years at ABB-Niessen">años en ABB-Niessen</span></div>
       <div class="hero-stat-div"></div>
-      <div class="hero-stat"><span class="hero-stat-num">3</span><span class="hero-stat-label" data-es="productos lanzados" data-en="products launched">productos lanzados</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-label" data-es="titulaciones universitarias" data-en="university degrees">titulaciones universitarias</span></div>
       <div class="hero-stat-div"></div>
-      <div class="hero-stat"><span class="hero-stat-num">Real Sociedad</span><span class="hero-stat-label" data-es="case study oficial" data-en="official case study">case study oficial</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">ABB</span><span class="hero-stat-label" data-es="empresa de referencia mundial" data-en="world reference company">empresa de referencia mundial</span></div>
     </div>
     <div class="hero-btns reveal reveal-delay-3">
-      <a href="#experiencia" class="btn-primary" data-es="Ver experiencia" data-en="View experience">Ver experiencia</a>
-      <a href="#contacto" class="btn-secondary" data-es="Contactar" data-en="Get in touch">Contactar</a>
+      <a href="#experiencia" class="btn-primary" data-es="Ver recorrido" data-en="View journey">Ver recorrido</a>
+      <a href="#contacto" class="btn-secondary" data-es="Contacto" data-en="Contact">Contacto</a>
     </div>
   </div>
 </section>
@@ -323,21 +313,22 @@
 <!-- SOBRE MÍ -->
 <section id="sobre-mi">
   <div class="section-label reveal" data-es="SOBRE MÍ" data-en="ABOUT ME">SOBRE MÍ</div>
+  <h2 class="section-title reveal" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
   <div class="about-grid">
     <div class="about-photo reveal">
-      <img src="images/jon-garcia.jpeg" alt="Jon García Echeverría" style="width:100%;height:100%;object-fit:cover;"/>
+      <div style="width:100%;height:100%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#ccc;">👤</div>
     </div>
     <div class="about-text">
-      <h2 class="about-name reveal">Jon García Echeverría</h2>
-      <p class="reveal" data-es="Soy ingeniero industrial con base en Donostia – San Sebastián, especializado en desarrollo de producto, estrategia tecnológica e innovación aplicada al deporte." data-en="I'm an industrial engineer based in Donostia – San Sebastián, specializing in product development, technology strategy and innovation applied to sports.">Soy ingeniero industrial con base en Donostia – San Sebastián, especializado en desarrollo de producto, estrategia tecnológica e innovación aplicada al deporte.</p>
-      <p class="reveal" data-es="Llevo más de 6 años en Voon Sports, creciendo desde Ingeniero en Prácticas hasta CTO. Lidero equipos multidisciplinares de hardware, firmware, software y diseño, con proyectos de I+D+i junto a la Real Sociedad." data-en="I've spent over 6 years at Voon Sports, growing from Intern to CTO. I lead multidisciplinary teams across hardware, firmware, software and design, running R&D projects with Real Sociedad.">Llevo más de 6 años en Voon Sports, creciendo desde Ingeniero en Prácticas hasta CTO. Lidero equipos multidisciplinares de hardware, firmware, software y diseño, con proyectos de I+D+i junto a la Real Sociedad.</p>
-      <p class="reveal" data-es="También cofundé Sunion, empresa de soluciones fotovoltaicas, y soy entrenador de fútbol base en el Club Deportivo Vasconia con titulación UEFA B." data-en="I also co-founded Sunion, a photovoltaic solutions company, and coach youth football at Club Deportivo Vasconia with UEFA B certification.">También cofundé Sunion, empresa de soluciones fotovoltaicas, y soy entrenador de fútbol base en el Club Deportivo Vasconia con titulación UEFA B.</p>
-      <p class="reveal" data-es="Fuera del trabajo me apasionan el trekking, los viajes, el CrossFit, la gastronomía — y he hecho voluntariado en Nepal y Jordania." data-en="Outside work I love trekking, travel, CrossFit, gastronomy — and I've volunteered in Nepal and Jordan.">Fuera del trabajo me apasionan el trekking, los viajes, el CrossFit, la gastronomía — y he hecho voluntariado en Nepal y Jordania.</p>
+      <h2 class="about-name reveal">Álvaro García Echeverría</h2>
+      <p class="reveal" data-es="Soy ingeniero industrial con base en Donostia – San Sebastián, especializado en desarrollo de producto y estrategia tecnológica." data-en="I'm an industrial engineer based in Donostia – San Sebastián, specializing in product development and technology strategy.">Soy ingeniero industrial con base en Donostia – San Sebastián, especializado en desarrollo de producto y estrategia tecnológica.</p>
+      <p class="reveal" data-es="Me especializo en diseño y optimización de componentes, gestión integral de proyectos y coordinación con equipos multidisciplinares y proveedores internacionales." data-en="I specialise in component design and optimisation, comprehensive project management and coordination with multidisciplinary teams and international suppliers.">Me especializo en diseño y optimización de componentes, gestión integral de proyectos y coordinación con equipos multidisciplinares y proveedores internacionales.</p>
+      <p class="reveal" data-es="También soy entrenador y coordinador de fútbol base en el Club Deportivo Vasconia, donde participo en la dirección deportiva del club." data-en="I also coach and coordinate youth football at Club Deportivo Vasconia, where I participate in the club's sporting management.">También soy entrenador y coordinador de fútbol base en el Club Deportivo Vasconia, donde participo en la dirección deportiva del club.</p>
+      <p class="reveal" data-es="Me interesa especialmente construir cosas útiles, bien pensadas y sostenibles en el tiempo." data-en="I'm particularly interested in building things that are useful, well thought-out and sustainable over time.">Me interesa especialmente construir cosas útiles, bien pensadas y sostenibles en el tiempo.</p>
+      <p class="reveal" data-es="Fuera del trabajo, disfruto del trekking, los viajes y el deporte." data-en="Outside work, I enjoy trekking, travel and sport.">Fuera del trabajo, disfruto del trekking, los viajes y el deporte.</p>
       <div class="about-links reveal">
-        <a href="https://www.linkedin.com/in/jon-garcia-echeverria-257634b2" target="_blank" class="about-link">💼 LinkedIn</a>
-        <a href="https://instagram.com/jongarcia94" target="_blank" class="about-link">📸 @jongarcia94</a>
+        <a href="https://www.linkedin.com/in/alvaro-garcia-echeverria" target="_blank" class="about-link">💼 LinkedIn</a>
         
-        <a href="mailto:jongarciaecheverria@gmail.com" class="about-link">✉️ Email</a>
+        <a href="mailto:abrojano@gmail.com" class="about-link">✉️ Email</a>
       </div>
     </div>
   </div>
@@ -347,56 +338,46 @@
 <section id="experiencia">
   <div class="section-label reveal" data-es="TRAYECTORIA" data-en="CAREER">TRAYECTORIA</div>
   <h2 class="section-title reveal" data-es="Experiencia Profesional" data-en="Professional Experience">Experiencia Profesional</h2>
-  <p class="section-sub reveal" data-es="Mi recorrido en tecnología, producto y emprendimiento." data-en="My journey through technology, product and entrepreneurship.">Mi recorrido en tecnología, producto y emprendimiento.</p>
+  <p class="section-sub reveal" data-es="Mi recorrido profesional en ingeniería, producto e innovación." data-en="My professional journey in engineering, product and innovation.">Mi recorrido profesional en ingeniería, producto e innovación.</p>
   <div class="timeline">
     <div class="timeline-item reveal">
       <div class="timeline-header">
-        <div><div class="timeline-title">CTO</div><div class="timeline-company">Voon Sports</div></div>
-        <div class="timeline-date" data-es="2023 – Actualidad" data-en="2023 – Present">2023 – Actualidad</div>
+        <div><div class="timeline-title" data-es="Project Lead · R&amp;D Engineer – Desarrollo de Producto" data-en="Project Lead · R&amp;D Engineer – Product Development">Project Lead · R&amp;D Engineer – Desarrollo de Producto</div><div class="timeline-company">ABB – Niessen</div></div>
+        <div class="timeline-date" data-es="2021 – Actualidad" data-en="2021 – Present">2021 – Actualidad</div>
       </div>
       <div class="timeline-desc">
-        <ul class="es-content"><li>Definición de la estrategia tecnológica y liderazgo en el desarrollo de productos interactivos orientados al rendimiento deportivo.</li><li>Coordinación de equipos de hardware, firmware, software y diseño.</li><li>Dirección de proyectos I+D+i desde la ideación hasta la industrialización.</li><li>Gestión de proveedores en Francia, Italia, Alemania, Reino Unido, Chile y EE.UU.</li><li>Case study oficial con la Real Sociedad.</li><li>Participación en decisiones estratégicas de negocio, planificación comercial y roadmap de producto.</li></ul>
-        <ul class="en-content" style="display:none"><li>Technology strategy and leadership in developing interactive sports performance products.</li><li>Coordination of hardware, firmware, software and design teams.</li><li>R&D project direction from ideation to industrialization.</li><li>Supplier management across France, Italy, Germany, UK, Chile and USA.</li><li>Official case study with Real Sociedad.</li><li>Participation in strategic business decisions, commercial planning and product roadmap.</li></ul>
+        <ul class="es-content"><li>Gestión integral de proyectos: plazos, presupuestos y calidad.</li><li>Lanzamiento y salida al mercado de nuevos productos.</li><li>Estancia en ABB Finlandia — proyectos internacionales.</li><li>Mentoring de becarios y Diversity Ambassador.</li><li>Formación en comunicación — Speaker Academy (Miguel Barco).</li><li>Desarrollo y liderazgo de proyectos de innovación social para la transformación cultural interna en Niessen.</li></ul>
+        <ul class="en-content" style="display:none"><li>Comprehensive project management: deadlines, budgets and quality.</li><li>Product launch and market release.</li><li>Internship at ABB Finland — international projects.</li><li>Intern mentoring and Diversity Ambassador.</li><li>Communication training — Speaker Academy (Miguel Barco).</li><li>Development and leadership of social innovation projects for internal cultural transformation at Niessen.</li></ul>
       </div>
     </div>
     <div class="timeline-item reveal">
       <div class="timeline-header">
-        <div><div class="timeline-title" data-es="Product Manager · Ing. Desarrollo de Producto" data-en="Product Manager · Product Development Engineer">Product Manager · Ing. Desarrollo de Producto</div><div class="timeline-company">Voon Sports</div></div>
-        <div class="timeline-date">2019 – 2023</div>
+        <div><div class="timeline-title" data-es="Ingeniero en Formación – Desarrollo de Producto" data-en="Engineer in Training – Product Development">Ingeniero en Formación – Desarrollo de Producto</div><div class="timeline-company">ABB – Niessen</div></div>
+        <div class="timeline-date">2018 – 2021</div>
       </div>
       <div class="timeline-desc">
-        <ul class="es-content"><li>Liderazgo en la evolución técnica de los principales productos de la compañía.</li><li>Programación de software de control mediante PLC (Tia Portal – Siemens).</li><li>Dashboards de análisis en Power BI con datos reales de sesiones deportivas.</li><li>Programación en Python para optimizar procesos de control.</li></ul>
-        <ul class="en-content" style="display:none"><li>Leadership in the technical evolution of the company's core products.</li><li>Control software programming via PLC (Tia Portal – Siemens).</li><li>Power BI analysis dashboards with real sports session data.</li><li>Python programming to optimize control processes.</li></ul>
+        <ul class="es-content"><li>Diseño de componentes plásticos y metálicos desde concepto hasta industrialización.</li><li>Simulación y validación mediante análisis de inyección y estudios mecánicos.</li></ul>
+        <ul class="en-content" style="display:none"><li>Design of plastic and metal components from concept to industrialisation.</li><li>Simulation and validation through injection analysis and mechanical studies.</li></ul>
       </div>
     </div>
     <div class="timeline-item reveal">
       <div class="timeline-header">
-        <div><div class="timeline-title" data-es="Ingeniero en Prácticas" data-en="Intern Engineer">Ingeniero en Prácticas</div><div class="timeline-company">Voon Sports</div></div>
-        <div class="timeline-date">2017 – 2019</div>
+        <div><div class="timeline-title" data-es="Entrenador · Coordinador · Apoyo en Dirección Deportiva" data-en="Coach · Coordinator · Sporting Management Support">Entrenador · Coordinador · Apoyo en Dirección Deportiva</div><div class="timeline-company">Club Deportivo Vasconia</div></div>
+        <div class="timeline-date" data-es="2014 – Actualidad" data-en="2014 – Present">2014 – Actualidad</div>
       </div>
       <div class="timeline-desc">
-        <ul class="es-content"><li>Desarrollo de software de visualización y análisis de datos para entrenamiento deportivo.</li><li>Colaboración con el equipo fundador en decisiones de producto y estrategia técnica.</li></ul>
-        <ul class="en-content" style="display:none"><li>Development of data visualization and analysis software for sports training.</li><li>Collaboration with the founding team on product and technical strategy.</li></ul>
-      </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-header">
-        <div><div class="timeline-title" data-es="Cofundador &amp; Ingeniero de Proyectos" data-en="Co-founder &amp; Project Engineer">Cofundador &amp; Ingeniero de Proyectos</div><div class="timeline-company">Sunion</div></div>
-        <div class="timeline-date">2023 – 2024</div>
-      </div>
-      <div class="timeline-desc">
-        <ul class="es-content"><li>Cofundador de empresa especializada en soluciones fotovoltaicas.</li><li>Gestión de subvenciones, análisis de viabilidad y tramitación administrativa.</li></ul>
-        <ul class="en-content" style="display:none"><li>Co-founder of a photovoltaic solutions company.</li><li>Grant management, feasibility analysis and administrative processing.</li></ul>
-      </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-header">
-        <div><div class="timeline-title" data-es="Coordinador, Entrenador &amp; Dirección Deportiva" data-en="Coordinator, Coach &amp; Sports Director">Coordinador, Entrenador &amp; Dirección Deportiva</div><div class="timeline-company">Club Deportivo Vasconia</div></div>
-        <div class="timeline-date">2015 – 2025</div>
-      </div>
-      <div class="timeline-desc">
-        <ul class="es-content"><li>Entrenador y coordinador de fútbol base. Titulado UEFA B.</li></ul>
-        <ul class="en-content" style="display:none"><li>Youth football coach and coordinator. UEFA B certified.</li></ul>
+        <ul class="es-content"><li>Entrenador y coordinador de fútbol base. Titulado UEFA C (RFEF).</li></ul>
+        <ul class="en-content" style="display:none"><li>Youth football coach and coordinator. UEFA C Licence (RFEF) certified.</li></ul>
+        <div class="coaching-profile es-content">
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text">Más de <strong>10 años desarrollando talento</strong> en fútbol base, con experiencia en entrenamiento, coordinación y estructura deportiva.</div></div>
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text"><strong>Perfil híbrido campo + análisis</strong>, combinando metodología de entrenamiento con scouting y evaluación del rendimiento.</div></div>
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text"><strong>Enfoque innovador en fútbol formativo</strong>, integrando tecnología y datos para mejorar la toma de decisiones y el desarrollo del jugador.</div></div>
+        </div>
+        <div class="coaching-profile en-content" style="display:none">
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text">Over <strong>10 years developing talent</strong> in youth football, with experience in coaching, coordination and sporting structure.</div></div>
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text"><strong>Hybrid profile: pitch + analysis</strong>, combining coaching methodology with scouting and performance evaluation.</div></div>
+          <div class="coaching-profile-item"><div class="coaching-profile-icon">◆</div><div class="coaching-profile-text"><strong>Innovative approach to youth football</strong>, integrating technology and data to improve decision-making and player development.</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -406,13 +387,13 @@
     <h2 class="section-title reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:36px" data-es="Educación" data-en="Education">Educación</h2>
     <div class="edu-grid">
       <div class="edu-card reveal reveal-delay-1">
-        <div class="edu-year">2016 – 2017</div>
+        <div class="edu-year">2017 – 2018</div>
         <div class="edu-degree" data-es="Master Universitario en Ingeniería Industrial" data-en="Master's Degree in Industrial Engineering">Master Universitario en Ingeniería Industrial</div>
         <div class="edu-school">Tecnun – Universidad de Navarra</div>
       </div>
       <div class="edu-card reveal reveal-delay-2">
-        <div class="edu-year">2012 – 2016</div>
-        <div class="edu-degree" data-es="Grado en Ingeniería en Tecnologías Industriales" data-en="Bachelor's in Industrial Technologies Engineering">Grado en Ingeniería en Tecnologías Industriales</div>
+        <div class="edu-year">2012 – 2017</div>
+        <div class="edu-degree" data-es="Doble Grado: Ingeniería Mecánica e Ingeniería en Tecnologías Industriales" data-en="Double Degree: Mechanical Engineering and Industrial Technologies Engineering">Doble Grado: Ingeniería Mecánica e Ing. en Tecnologías Industriales</div>
         <div class="edu-school">Tecnun – Universidad de Navarra</div>
       </div>
     </div>
@@ -422,81 +403,75 @@
 <!-- MODALES -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
 
-<div class="modal" id="modal-voon">
+<div class="modal" id="modal-abb">
   <button class="modal-close" onclick="closeModal()">✕</button>
   <div class="modal-header">
-    <img src="images/1774297481210_logo-voon-white.jpeg" alt="Voon Sports" style="height:36px;object-fit:contain;mix-blend-mode:screen;background:#1a1a1a;padding:6px 10px;border-radius:6px;margin-right:4px">
+    <span class="modal-icon">⚙️</span>
     <div>
-      <div class="modal-title">Voon Sports</div>
-      <div class="modal-subtitle" data-es="CTO · 2017 – Actualidad" data-en="CTO · 2017 – Present">CTO · 2017 – Actualidad</div>
+      <div class="modal-title">ABB – Niessen</div>
+      <div class="modal-subtitle" data-es="R&amp;D Engineer · Project Lead · 2018 – Actualidad" data-en="R&amp;D Engineer · Project Lead · 2018 – Present">R&amp;D Engineer · Project Lead · 2018 – Actualidad</div>
     </div>
   </div>
-  <div class="modal-images" id="voon-images"></div>
+  <div class="modal-images" id="abb-images"></div>
   <div class="modal-body">
-    <p class="es-content" data-lang="es">Voon Sports nació con la idea de llevar la tecnología interactiva al entrenamiento deportivo. Empezamos en fútbol y fuimos creciendo hacia el pádel, tenis y fitness, desarrollando productos que mezclan hardware, firmware y software a medida.</p>
-    <p class="en-content" style="display:none" data-lang="en">Voon Sports started with the idea of bringing interactive technology to sports training. We began in football and expanded into padel, tennis and fitness, developing products that combine custom hardware, firmware and software.</p>
+    <p class="es-content" data-lang="es">ABB-Niessen es una división de ABB, empresa líder mundial en electrotecnia y automatización. Desde 2018 he crecido desde ingeniero en formación hasta project lead, liderando el desarrollo de nuevos productos y gestionando proyectos de I+D de principio a fin.</p>
+    <p class="en-content" style="display:none" data-lang="en">ABB-Niessen is a division of ABB, a world-leading company in electrotechnics and automation. Since 2018 I have grown from engineer in training to project lead, driving new product development and managing R&D projects end to end.</p>
     <div class="modal-highlights">
       <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Evolución del producto" data-en="Product evolution">Evolución del producto</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Desde los primeros prototipos hasta productos industrializados vendidos a clubes profesionales. Cada versión incorporó más inteligencia: análisis de datos en tiempo real, dashboards personalizados para entrenadores y conectividad cloud.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">From early prototypes to industrialized products sold to professional clubs. Each version added more intelligence: real-time data analysis, custom dashboards for coaches and cloud connectivity.</div>
+        <div class="modal-highlight-title" data-es="Diseño y desarrollo de producto" data-en="Product design and development">Diseño y desarrollo de producto</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Diseño de componentes plásticos y metálicos, desde concepto hasta industrialización.</li>
+          <li>Simulación y validación: análisis de inyección y estudios mecánicos.</li>
+          <li>Optimización de resistencia, durabilidad y coste de producción.</li>
+          <li>Formación especializada en inyección plástica y diseño de piezas.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Design of plastic and metal components, from concept to industrialisation.</li>
+          <li>Simulation and validation: injection analysis and mechanical studies.</li>
+          <li>Optimisation of resistance, durability and production cost.</li>
+          <li>Specialist training in plastic injection and part design.</li>
+        </ul>
       </div>
       <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Real Sociedad" data-en="Real Sociedad">Real Sociedad</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Case study oficial con el primer equipo de la Real Sociedad, integrando nuestros productos en sus sesiones de entrenamiento y midiendo el impacto en el rendimiento de los jugadores.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Official case study with Real Sociedad's first team, integrating our products into their training sessions and measuring the impact on player performance.</div>
+        <div class="modal-highlight-title" data-es="Gestión de proyectos" data-en="Project management">Gestión de proyectos</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Gestión integral como líder de proyectos: plazos, presupuestos y calidad.</li>
+          <li>Lanzamiento y salida al mercado de nuevos productos.</li>
+          <li>Colaboración en proyectos inter-empresa dentro de la división ABB.</li>
+          <li>Estancia en ABB Finlandia — proyectos internacionales de desarrollo.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Comprehensive project leadership: deadlines, budgets and quality.</li>
+          <li>Product launch and market release.</li>
+          <li>Collaboration in inter-company projects within ABB division.</li>
+          <li>Internship at ABB Finland — international development projects.</li>
+        </ul>
       </div>
       <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Equipo y gestión" data-en="Team & management">Equipo y gestión</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Coordiné equipos multidisciplinares de hardware, firmware, software y diseño, gestionando proveedores en Francia, Italia, Alemania, Reino Unido, Chile y EE.UU. y participando en las decisiones estratégicas del negocio.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">I coordinated multidisciplinary teams across hardware, firmware, software and design, managing suppliers in France, Italy, Germany, UK, Chile and USA, and participating in strategic business decisions.</div>
+        <div class="modal-highlight-title" data-es="Liderazgo e innovación" data-en="Leadership and innovation">Liderazgo e innovación</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Supervisión y mentoring de becarios: integración y crecimiento profesional.</li>
+          <li>Diversity Ambassador: iniciativas de diversidad e inclusión corporativa.</li>
+          <li>Desarrollo de proyectos de innovación social para transformación cultural interna.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Supervision and mentoring of interns: integration and professional growth.</li>
+          <li>Diversity Ambassador: corporate diversity and inclusion initiatives.</li>
+          <li>Development of social innovation projects for internal cultural transformation.</li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="modal-tags"><span class="tag">CTO</span><span class="tag">Hardware</span><span class="tag">Python</span><span class="tag">PLC</span><span class="tag">Power BI</span><span class="tag">I+D+i</span></div>
-</div>
-
-<div class="modal" id="modal-sunion">
-  <button class="modal-close" onclick="closeModal()">✕</button>
-  <div class="modal-header">
-    <img src="images/1774297481210_logo-sunion.jpeg" alt="Sunion" style="height:36px;object-fit:contain;margin-right:4px">
-    <div>
-      <div class="modal-title">Sunion</div>
-      <div class="modal-subtitle">2023 – 2024</div>
-    </div>
-  </div>
-  <div class="modal-images" id="sunion-images"></div>
-  <div class="modal-body">
-    <p class="es-content" data-lang="es">Sunion surgió de la oportunidad que vi en el sector fotovoltaico para particulares y empresas. El mercado estaba creciendo rápido pero faltaba rigor técnico en los proyectos: muchas instalaciones se dimensionaban mal o sin estudiar bien si realmente salían rentables.</p>
-    <p class="en-content" style="display:none" data-lang="en">Sunion emerged from an opportunity I spotted in the photovoltaic sector for households and businesses. The market was growing fast but lacked technical rigour — many installations were poorly sized or without properly assessing whether they were actually cost-effective.</p>
-    <div class="modal-highlights">
-      <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Estudio de viabilidad" data-en="Feasibility study">Estudio de viabilidad</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Antes de proponer ninguna instalación, hacíamos un análisis detallado del consumo real del cliente, la orientación del tejado, la radiación de la zona y el precio de la energía. Si no salían los números, lo decíamos.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Before proposing any installation, we carried out a detailed analysis of the client's actual consumption, roof orientation, local solar radiation and energy prices. If the numbers didn't add up, we said so.</div>
-      </div>
-      <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Dimensionamiento técnico" data-en="Technical sizing">Dimensionamiento técnico</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Diseño completo de la instalación: selección de paneles, inversores y baterías, cálculo de producción estimada y análisis del retorno de la inversión a 10 y 25 años.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Full installation design: panel, inverter and battery selection, estimated production calculation and ROI analysis over 10 and 25 years.</div>
-      </div>
-      <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Subvenciones y tramitación" data-en="Grants & admin">Subvenciones y tramitación</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Gestión completa de las ayudas del IDAE y subvenciones autonómicas, reduciendo significativamente el coste final para el cliente y encargándonos de toda la tramitación administrativa.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Full management of IDAE and regional subsidies, significantly reducing the final cost for clients while handling all the administrative paperwork.</div>
-      </div>
-    </div>
-  </div>
-  <div class="modal-tags"><span class="tag" data-es="Cofundador" data-en="Co-founder">Cofundador</span><span class="tag" data-es="Energía Solar" data-en="Solar Energy">Energía Solar</span><span class="tag" data-es="Ingeniería" data-en="Engineering">Ingeniería</span><span class="tag" data-es="Subvenciones" data-en="Grants">Subvenciones</span></div>
+  <div class="modal-tags"><span class="tag" data-es="Desarrollo de Producto" data-en="Product Development">Desarrollo de Producto</span><span class="tag">CAD</span><span class="tag" data-es="Simulación" data-en="Simulation">Simulación</span><span class="tag">I+D</span><span class="tag" data-es="Gestión de Proyectos" data-en="Project Management">Gestión de Proyectos</span></div>
 </div>
 
 <div class="modal" id="modal-vasconia">
   <button class="modal-close" onclick="closeModal()">✕</button>
   <div class="modal-header">
     <div style="display:flex;align-items:center;gap:8px;margin-right:8px">
-      <img src="images/1774297481210_logo-vasconia.jpeg" alt="Vasconia" style="height:44px;object-fit:contain;mix-blend-mode:lighten">
-      <img src="images/1774297481210_logo-uefa.jpeg" alt="UEFA" style="height:28px;width:28px;object-fit:contain;border-radius:50%;mix-blend-mode:lighten">
-      <img src="images/1774297481210_logo-rfef.jpg" alt="RFEF" style="height:28px;width:28px;object-fit:contain;border-radius:50%;mix-blend-mode:lighten">
+      <img src="images/1774297481210_logo-vasconia.jpeg" alt="Vasconia" style="height:44px;object-fit:contain;">
+      <img src="images/1774297481210_logo-uefa.jpeg" alt="UEFA" style="height:28px;width:28px;object-fit:contain;border-radius:50%;">
+      <img src="images/1774297481210_logo-rfef.jpg" alt="RFEF" style="height:28px;width:28px;object-fit:contain;border-radius:50%;">
     </div>
     <div>
       <div class="modal-title">Club Deportivo Vasconia</div>
@@ -505,27 +480,65 @@
   </div>
   <div class="modal-images" id="vasconia-images"></div>
   <div class="modal-body">
-    <p class="es-content" data-lang="es">Diez años ligado al Club Deportivo Vasconia compaginando el trabajo con la pasión por el fútbol. Empecé entrenando y fui asumiendo más responsabilidades hasta participar en la dirección deportiva del club.</p>
-    <p class="en-content" style="display:none" data-lang="en">Ten years connected to Club Deportivo Vasconia, combining work with a passion for football. I started as a coach and gradually took on more responsibilities until joining the club's sporting management.</p>
+    <p class="es-content" data-lang="es">Diez años ligado al Club Deportivo Vasconia compaginando el trabajo con la pasión por el fútbol. Empecé entrenando y fui asumiendo más responsabilidades hasta participar en la dirección deportiva del club. Titulado UEFA C (RFEF).</p>
+    <p class="en-content" style="display:none" data-lang="en">Ten years connected to Club Deportivo Vasconia, combining work with a passion for football. I started as a coach and gradually took on more responsibilities until joining the club's sporting management. UEFA C Licence (RFEF) certified.</p>
     <div class="modal-highlights">
+
       <div class="modal-highlight">
         <div class="modal-highlight-title" data-es="Entrenador" data-en="Coach">Entrenador</div>
-        <div class="modal-highlight-text es-content" data-lang="es">He entrenado a equipos de distintas categorías en fútbol base, con resultados destacados en competiciones regionales — entre ellos, campeón Sub-12. Titulado UEFA B.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">I've coached teams across different youth categories, with notable results in regional competitions — including a Sub-12 championship title. UEFA B certified.</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Formación de jugadores en distintas categorías de fútbol base.</li>
+          <li>Equipos con alto rendimiento competitivo a nivel regional.</li>
+          <li>Metodologías orientadas a la mejora técnica, táctica y toma de decisiones.</li>
+          <li>Campeón regional Sub-12.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Player development across multiple youth football categories.</li>
+          <li>High-performance results at regional competitive level.</li>
+          <li>Methodologies focused on technical, tactical and decision-making improvement.</li>
+          <li>Regional Sub-12 champion.</li>
+        </ul>
       </div>
+
       <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Coordinador" data-en="Coordinator">Coordinador</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Gestión de grupos, coordinación del cuerpo técnico y planificación de la temporada. Asegurando coherencia en la metodología de juego en todas las categorías del club.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Team management, technical staff coordination and season planning. Ensuring consistency in playing methodology across all club categories.</div>
+        <div class="modal-highlight-title" data-es="Entrenador &amp; Coordinador" data-en="Coach &amp; Coordinator">Entrenador &amp; Coordinador</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Diseño y planificación de sesiones adaptadas a cada etapa formativa.</li>
+          <li>Metodología de juego común para todas las categorías del club.</li>
+          <li>Coordinación del cuerpo técnico y seguimiento de entrenadores.</li>
+          <li>Planificación de temporadas: objetivos, contenidos y evolución del jugador.</li>
+          <li>Organización de campus de tecnificación con captación de talento regional.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Design and planning of training sessions tailored to each developmental stage.</li>
+          <li>Common playing methodology across all club categories.</li>
+          <li>Coaching staff coordination and monitoring.</li>
+          <li>Season planning: objectives, content and player progression.</li>
+          <li>Organisation of technology camps with regional talent identification.</li>
+        </ul>
       </div>
+
       <div class="modal-highlight">
-        <div class="modal-highlight-title" data-es="Dirección deportiva" data-en="Sporting management">Dirección deportiva</div>
-        <div class="modal-highlight-text es-content" data-lang="es">Participación en las decisiones estratégicas del club: fichajes, estructura de equipos, relación con familias y representación institucional.</div>
-        <div class="modal-highlight-text en-content" style="display:none" data-lang="en">Participation in the club's strategic decisions: signings, team structure, family relations and institutional representation.</div>
+        <div class="modal-highlight-title" data-es="Dirección Deportiva · Scouting &amp; Datos" data-en="Sporting Management · Scouting &amp; Data">Dirección Deportiva · Scouting &amp; Datos</div>
+        <ul class="modal-bullets es-content" data-lang="es">
+          <li>Planificación deportiva: confección de plantillas y estructura de equipos.</li>
+          <li>Gestión de captación y relación con jugadores, familias y entorno competitivo.</li>
+          <li>Scouting en competición y elaboración de informes de rendimiento.</li>
+          <li>Implementación de herramientas de análisis de datos en fútbol base.</li>
+          <li>Integración de tecnología y metodología analítica aplicada al club.</li>
+        </ul>
+        <ul class="modal-bullets en-content" style="display:none" data-lang="en">
+          <li>Sporting planning: squad building and team structure.</li>
+          <li>Recruitment management and relations with players, families and competitive environment.</li>
+          <li>Live scouting and performance report production.</li>
+          <li>Implementation of data analysis tools in youth football.</li>
+          <li>Integration of technology and analytical methodology applied to the club.</li>
+        </ul>
       </div>
+
     </div>
   </div>
-  <div class="modal-tags"><span class="tag">UEFA B</span><span class="tag" data-es="Fútbol Base" data-en="Youth Football">Fútbol Base</span><span class="tag" data-es="Coordinación" data-en="Coordination">Coordinación</span><span class="tag" data-es="Liderazgo" data-en="Leadership">Liderazgo</span></div>
+  <div class="modal-tags"><span class="tag">UEFA C</span><span class="tag" data-es="Fútbol Base" data-en="Youth Football">Fútbol Base</span><span class="tag" data-es="Coordinación" data-en="Coordination">Coordinación</span><span class="tag" data-es="Liderazgo" data-en="Leadership">Liderazgo</span></div>
 </div>
 
 <!-- PROYECTOS -->
@@ -534,46 +547,30 @@
   <h2 class="section-title reveal" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</h2>
   <p class="section-sub reveal" data-es="Haz clic en cada proyecto para ver más detalle." data-en="Click each project to see more detail.">Haz clic en cada proyecto para ver más detalle.</p>
   <div class="projects-grid">
-    <div class="project-card reveal reveal-delay-1" onclick="openModal('voon')" style="cursor:pointer">
-      <div class="project-logo-wrap" style="height:48px;display:flex;align-items:center;margin-bottom:18px"><img src="images/1774297481210_logo-voon-white.jpeg" alt="Voon Sports" style="max-height:36px;max-width:140px;object-fit:contain;mix-blend-mode:screen;padding:4px"></div>
-      <div class="project-title">Voon Sports</div>
-      <div class="project-desc" data-es="Productos tecnológicos para el entrenamiento deportivo profesional. De fútbol al pádel, tenis y fitness. Case study oficial con la Real Sociedad." data-en="Tech products for professional sports training. From football to padel, tennis and fitness. Official case study with Real Sociedad.">Productos tecnológicos para el entrenamiento deportivo profesional. De fútbol al pádel, tenis y fitness. Case study oficial con la Real Sociedad.</div>
-      <div class="project-tags"><span class="tag">CTO</span><span class="tag">Hardware</span><span class="tag">Python</span><span class="tag">PLC</span><span class="tag">Power BI</span></div>
+    <div class="project-card reveal reveal-delay-1" onclick="openModal('abb')" style="cursor:pointer">
+      <div class="project-logo-wrap" style="height:40px;display:flex;align-items:center;margin-bottom:16px"><img src="images/logo-abb.png" alt="ABB Niessen" style="max-height:32px;max-width:120px;object-fit:contain;" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-size:1.2rem;font-weight:600;color:var(--text)">ABB</span></div>
+      <div class="project-title">ABB – Niessen</div>
+      <div class="project-desc" data-es="Más de 7 años en I+D y desarrollo de producto en una empresa líder mundial en electrotecnia y automatización." data-en="Over 7 years in R&D and product development at a world-leading company in electrotechnics and automation.">Más de 7 años en I+D y desarrollo de producto en una empresa líder mundial en electrotecnia y automatización.</div>
+      <div class="project-tags"><span class="tag" data-es="Desarrollo de Producto" data-en="Product Development">Desarrollo de Producto</span><span class="tag">CAD</span><span class="tag" data-es="Simulación" data-en="Simulation">Simulación</span><span class="tag" data-es="Gestión de Proyectos" data-en="Project Management">Gestión de Proyectos</span></div>
       <div class="project-more" data-es="Ver más →" data-en="See more →">Ver más →</div>
     </div>
-    <div class="project-card reveal reveal-delay-2" onclick="openModal('sunion')" style="cursor:pointer">
-      <div class="project-logo-wrap" style="height:48px;display:flex;align-items:center;margin-bottom:18px"><img src="images/1774297481210_logo-sunion.jpeg" alt="Sunion" style="max-height:36px;max-width:120px;object-fit:contain;"></div>
-      <div class="project-title">Sunion</div>
-      <div class="project-desc" data-es="Cofundador de startup de soluciones fotovoltaicas. Estudios de viabilidad, dimensionamiento técnico y gestión de subvenciones para particulares y empresas." data-en="Co-founder of a photovoltaic solutions startup. Feasibility studies, technical sizing and grant management for households and businesses.">Cofundador de startup de soluciones fotovoltaicas. Estudios de viabilidad, dimensionamiento técnico y gestión de subvenciones para particulares y empresas.</div>
-      <div class="project-tags"><span class="tag" data-es="Emprendimiento" data-en="Entrepreneurship">Emprendimiento</span><span class="tag" data-es="Energía Solar" data-en="Solar Energy">Energía Solar</span><span class="tag" data-es="Ingeniería" data-en="Engineering">Ingeniería</span></div>
-      <div class="project-more" data-es="Ver más →" data-en="See more →">Ver más →</div>
-    </div>
-    <div class="project-card reveal reveal-delay-3" onclick="openModal('vasconia')" style="cursor:pointer">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-        <img src="images/1774297481210_logo-vasconia.jpeg" alt="Club Deportivo Vasconia" style="max-height:48px;max-width:52px;object-fit:contain;mix-blend-mode:lighten">
-        <div style="display:flex;gap:8px;align-items:center">
-          <img src="images/1774297481210_logo-uefa.jpeg" alt="UEFA" style="height:28px;width:28px;object-fit:contain;border-radius:50%;mix-blend-mode:lighten">
-          <img src="images/1774297481210_logo-rfef.jpg" alt="RFEF" style="height:28px;width:28px;object-fit:contain;border-radius:50%;mix-blend-mode:lighten">
-        </div>
+    <div class="project-card reveal reveal-delay-2" onclick="openModal('vasconia')" style="cursor:pointer">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <img src="images/1774297481210_logo-vasconia.jpeg" alt="Club Deportivo Vasconia" style="max-height:40px;max-width:44px;object-fit:contain">
+        <img src="images/1774297481210_logo-rfef.jpg" alt="RFEF" style="height:26px;width:26px;object-fit:contain;border-radius:50%">
       </div>
       <div class="project-title">Club Deportivo Vasconia</div>
-      <div class="project-desc" data-es="10 años como entrenador, coordinador y parte de la dirección deportiva del club. Campeón regional Sub-12. Titulado UEFA B." data-en="10 years as coach, coordinator and part of the club's sporting management. Regional Sub-12 champion. UEFA B certified.">10 años como entrenador, coordinador y parte de la dirección deportiva del club. Campeón regional Sub-12. Titulado UEFA B.</div>
-      <div class="project-tags"><span class="tag">UEFA B</span><span class="tag" data-es="Fútbol Base" data-en="Youth Football">Fútbol Base</span><span class="tag" data-es="Liderazgo" data-en="Leadership">Liderazgo</span></div>
+      <div class="project-desc" data-es="Más de 10 años en fútbol base: entrenamiento, coordinación de equipos y apoyo en la dirección deportiva del club." data-en="Over 10 years in youth football: coaching, team coordination and support in the club's sporting management.">Más de 10 años en fútbol base: entrenamiento, coordinación de equipos y apoyo en la dirección deportiva del club.</div>
+      <div class="project-tags"><span class="tag">UEFA C</span><span class="tag" data-es="Fútbol Base" data-en="Youth Football">Fútbol Base</span><span class="tag" data-es="Coordinación" data-en="Coordination">Coordinación</span><span class="tag" data-es="Liderazgo" data-en="Leadership">Liderazgo</span></div>
       <div class="project-more" data-es="Ver más →" data-en="See more →">Ver más →</div>
-    </div>
-    <div class="project-card reveal reveal-delay-4" style="opacity:.75">
-      <span class="project-icon" style="font-size:1.4rem">🌍</span>
-      <div class="project-title" style="font-size:.9rem" data-es="Voluntariado · Nepal &amp; Jordania" data-en="Volunteering · Nepal &amp; Jordan">Voluntariado · Nepal &amp; Jordania</div>
-      <div class="project-desc" style="font-size:.82rem" data-es="Colaboración con comunidades locales en iniciativas de desarrollo." data-en="Collaboration with local communities on development initiatives.">Colaboración con comunidades locales en iniciativas de desarrollo.</div>
-      <div class="project-tags"><span class="tag">Nepal</span><span class="tag" data-es="Jordania" data-en="Jordan">Jordania</span></div>
     </div>
   </div>
 </section>
 
 <!-- HABILIDADES -->
 <section id="habilidades">
-  <div class="section-label reveal" data-es="HABILIDADES" data-en="SKILLS">HABILIDADES</div>
-  <h2 class="section-title reveal" data-es="Skills &amp; Herramientas" data-en="Skills &amp; Tools">Skills &amp; Herramientas</h2>
+  <div class="section-label reveal" data-es="HERRAMIENTAS" data-en="TOOLS">HERRAMIENTAS</div>
+  <h2 class="section-title reveal" data-es="Herramientas &amp; Áreas" data-en="Tools &amp; Areas">Herramientas &amp; Áreas</h2>
   <p class="section-sub reveal" data-es="Tecnologías, plataformas e idiomas con los que trabajo." data-en="Technologies, platforms and languages I work with.">Tecnologías, plataformas e idiomas con los que trabajo.</p>
   <div class="skills-new-grid">
 
@@ -583,13 +580,14 @@
         <div class="skill-block-title" data-es="Tecnología" data-en="Technology">Tecnología</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag highlight">Python</span>
-        <span class="skill-tag highlight">C++</span>
-        <span class="skill-tag highlight">Power BI</span>
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">Tia Portal</span>
-        <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Xcode</span>
+        <span class="skill-tag highlight">PTC Creo</span>
+        <span class="skill-tag highlight">SolidWorks</span>
+        <span class="skill-tag highlight">AutoCAD</span>
+        <span class="skill-tag">Matlab</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Ansys Fluent</span>
+        <span class="skill-tag">Simulink</span>
+        <span class="skill-tag">LabView</span>
       </div>
     </div>
 
@@ -600,9 +598,8 @@
       </div>
       <div class="skill-tags">
         <span class="skill-tag highlight">Claude</span>
-        <span class="skill-tag highlight">Lovable</span>
-        <span class="skill-tag highlight">Cursor</span>
-        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag highlight">ChatGPT</span>
+        <span class="skill-tag">Cursor</span>
         <span class="skill-tag">GitHub Copilot</span>
         <span class="skill-tag">Notion AI</span>
       </div>
@@ -614,14 +611,12 @@
         <div class="skill-block-title" data-es="Negocio Digital" data-en="Digital Business">Negocio Digital</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag highlight">Shopify</span>
-        <span class="skill-tag highlight">Google Ads</span>
-        <span class="skill-tag">Klaviyo</span>
-        <span class="skill-tag">Holded</span>
-        <span class="skill-tag">Trello</span>
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Illustrator</span>
+        <span class="skill-tag highlight">SAP ERP</span>
+        <span class="skill-tag highlight">Windchill</span>
+        <span class="skill-tag">Asana</span>
         <span class="skill-tag">Microsoft 365</span>
+        <span class="skill-tag">Illustrator</span>
+        <span class="skill-tag">Inkscape</span>
       </div>
     </div>
 
@@ -638,23 +633,22 @@
         <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
         <div style="height:12px"></div>
         <div class="lang-item"><span class="lang-name" data-es="Inglés" data-en="English">Inglés</span><span class="lang-level" data-es="Fluido" data-en="Fluent">Fluido</span></div>
-        <div class="lang-bar"><div class="lang-bar-fill" style="width:88%"></div></div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:72%"></div></div>
       </div>
     </div>
 
-    <div class="skill-block reveal reveal-delay-2">
+    <div class="skill-block reveal reveal-delay-2" style="grid-column:span 2">
       <div class="skill-block-header">
         <div class="skill-block-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <div class="skill-block-title" data-es="Intereses" data-en="Interests">Intereses</div>
       </div>
       <div class="skill-tags">
-        <span class="skill-tag">🏔️ <span data-es="Trekking" data-en="Trekking">Trekking</span></span>
-        <span class="skill-tag">✈️ <span data-es="Viajes" data-en="Travel">Viajes</span></span>
-        <span class="skill-tag">⚽ <span data-es="Fútbol" data-en="Football">Fútbol</span></span>
-        <span class="skill-tag">🏋️ CrossFit</span>
+        <span class="skill-tag">🏸 Pádel</span>
         <span class="skill-tag">⛳ Golf</span>
-        <span class="skill-tag">🏐 <span data-es="Vóley" data-en="Volleyball">Vóley</span></span>
-        <span class="skill-tag">🍽️ <span data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span></span>
+        <span class="skill-tag">✈️ <span data-es="Viajes" data-en="Travel">Viajes</span></span>
+        <span class="skill-tag">📸 <span data-es="Fotografía" data-en="Photography">Fotografía</span></span>
+        <span class="skill-tag">🏋️ CrossFit</span>
+        <span class="skill-tag">📈 Trading</span>
       </div>
     </div>
 
@@ -667,52 +661,33 @@
   <h2 class="section-title reveal" data-es="Momentos" data-en="Moments">Momentos</h2>
 
   <div class="gallery-collage">
-    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-jordania.jpeg" alt="Jordania" class="gallery-img" style="object-position:center 40%;"></div>
-    <div class="gallery-item tall reveal reveal-delay-2"><img src="images/galeria-desierto.jpeg" alt="Wadi Rum" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-safari.jpeg" alt="Tanzania" class="gallery-img" style="object-position:20% center;"></div>
-    <div class="gallery-item tall reveal reveal-delay-1"><img src="images/galeria-trekking.jpeg" alt="Nepal MTB" class="gallery-img" style="object-position:center 60%;"></div>
-    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-esquiar.jpeg" alt="Esqui" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-3"><img src="images/galeria-voon2.jpeg" alt="Voon Sports" class="gallery-img"></div>
-    <div class="gallery-item reveal reveal-delay-1"><img src="images/galeria-voon3.jpeg" alt="Real Sociedad" class="gallery-img" style="object-position:15% center;filter:brightness(1.3);"></div>
-    <div class="gallery-item reveal reveal-delay-2"><img src="images/galeria-trekking2.jpeg" alt="Torres del Paine" class="gallery-img" style="object-position:75% 65%;"></div>
-    <div class="gallery-item tall reveal reveal-delay-3"><img src="images/galeria-trekking1.jpeg" alt="Patagonia" class="gallery-img" style="object-position:center 70%;"></div>
+    <div class="gallery-item reveal reveal-delay-1" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2rem">📸</div>
+    <div class="gallery-item tall reveal reveal-delay-2" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-size:2rem">🏙️</div>
+    <div class="gallery-item reveal reveal-delay-3" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2rem">⛳</div>
+    <div class="gallery-item tall reveal reveal-delay-1" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-size:2rem">✈️</div>
+    <div class="gallery-item reveal reveal-delay-2" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2rem">🏸</div>
+    <div class="gallery-item reveal reveal-delay-3" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-size:2rem">⚽</div>
+    <div class="gallery-item reveal reveal-delay-1" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2rem">🌍</div>
+    <div class="gallery-item reveal reveal-delay-2" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-size:2rem">📷</div>
+    <div class="gallery-item tall reveal reveal-delay-3" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2rem">🏔️</div>
   </div>
-</section>
+  </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-label reveal" data-es="CONTACTO" data-en="CONTACT">CONTACTO</div>
-  <h2 class="section-title reveal" data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
-  <div class="contact-grid">
-    <div>
-      <p class="contact-lead reveal" data-es="Si tienes un proyecto interesante, una oportunidad de colaboración o simplemente quieres conectar, no dudes en escribirme." data-en="If you have an interesting project, a collaboration opportunity or simply want to connect, feel free to reach out.">Si tienes un proyecto interesante, una oportunidad de colaboración o simplemente quieres conectar, no dudes en escribirme.</p>
-      <div class="contact-items reveal">
-        <div class="contact-item"><div class="contact-icon">✉️</div><a href="mailto:jongarciaecheverria@gmail.com">jongarciaecheverria@gmail.com</a></div>
-        <div class="contact-item"><div class="contact-icon">📍</div><span data-es="Donostia – San Sebastián" data-en="Donostia – San Sebastián">Donostia – San Sebastián</span></div>
-        <div class="contact-item"><div class="contact-icon">📱</div><a href="tel:+34636063297">+34 636 063 297</a></div>
-        <div class="contact-item"><div class="contact-icon">💼</div><a href="https://www.linkedin.com/in/jon-garcia-echeverria-257634b2" target="_blank">LinkedIn</a></div>
-      </div>
-      <div class="contact-socials reveal">
-        <a href="https://www.linkedin.com/in/jon-garcia-echeverria-257634b2" target="_blank" class="social-btn">💼</a>
-        <a href="https://instagram.com/jongarcia94" target="_blank" class="social-btn">📸</a>
-        <a href="mailto:jongarciaecheverria@gmail.com" class="social-btn">✉️</a>
-      </div>
-    </div>
-    <div class="reveal">
-      <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;flex-direction:column;gap:16px">
-        <input type="hidden" name="form-name" value="contacto"/>
-        <p style="display:none"><input name="bot-field"/></p>
-        <div class="form-field"><label class="form-label" data-es="Nombre" data-en="Name">Nombre</label><input type="text" name="nombre" class="form-input" required/></div>
-        <div class="form-field"><label class="form-label">Email</label><input type="email" name="email" class="form-input" required/></div>
-        <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label><textarea name="mensaje" class="form-textarea"></textarea></div>
-        <button class="btn-primary" type="submit" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
-      </form>
-    </div>
+  <h2 class="section-title reveal" data-es="Contacto" data-en="Contact">Contacto</h2>
+  <p class="contact-lead reveal" style="max-width:480px;margin-bottom:2.5rem" data-es="Si te apetece escribir o simplemente conectar, puedes hacerlo aquí." data-en="If you fancy writing or simply connecting, you can do it here.">Si te apetece escribir o simplemente conectar, puedes hacerlo aquí.</p>
+  <div class="contact-items reveal" style="gap:16px">
+    <div class="contact-item"><div class="contact-icon">✉️</div><a href="mailto:abrojano@gmail.com">abrojano@gmail.com</a></div>
+    <div class="contact-item"><div class="contact-icon">📱</div><a href="tel:+34636063297">+34 616 629 802</a></div>
+    <div class="contact-item"><div class="contact-icon">📍</div><span data-es="Donostia – San Sebastián" data-en="Donostia – San Sebastián">Donostia – San Sebastián</span></div>
+    <div class="contact-item"><div class="contact-icon">💼</div><a href="https://www.linkedin.com/in/alvaro-garcia-echeverria" target="_blank">LinkedIn</a></div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-text">© 2025 Jon García Echeverría</div>
+  <div class="footer-text">© 2025 Álvaro García Echeverría</div>
   <div class="footer-text" data-es="Hecho con dedicación" data-en="Made with dedication">Hecho con dedicación</div>
 </footer>
 
